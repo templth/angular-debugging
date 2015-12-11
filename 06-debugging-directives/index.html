@@ -1,0 +1,39 @@
+<!doctype html>	
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  </head>
+  <body ng-app="debugDirective">
+    <ng-include src="'description.html'"></ng-include>
+
+    <div class="container" ng-controller="MainCtrl">
+      <div class="col-xs-11">
+        <fieldset>
+          <legend>Question</legend>
+
+          <form name="questionForm" novalidate ng-submit="saveQuestion()" class="form-horizontal">
+            <field label="Title">
+              <input name="title" type="text" ng-model"question.title" required/>
+              <br/><br/>
+              <div class="alert alert-warning">
+                <strong>Existing questions</strong>: <span ng-repeat="question in existingQuestions">{{question.title}}{{$last ? '' : ', '}}</span>
+              </div>
+            </field>
+            <field label="Content">
+              <input name="content" type="text" ng-model="question.content" required/>
+            </field>
+
+            <div class="form-group">
+              <div class="col-xs-offset-3 col-xs-7">
+                <input ng-disable="questionForm.$invalid" class="btn btn-primary" type="submit" value="Save"/>
+              </div>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
